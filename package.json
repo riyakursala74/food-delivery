@@ -1,0 +1,27 @@
+{
+  "name": "food-delivery",
+  "version": "1.0.0",
+  "description": "this is a food delivery app",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riyakursala74/food-delivery.git"
+  },
+  "keywords": [
+    "food-delivery",
+    "react",
+    "parcel"
+  ],
+  "author": "Riya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riyakursala74/food-delivery/issues"
+  },
+  "homepage": "https://github.com/riyakursala74/food-delivery#readme",
+  "devDependencies": {
+    "parcel": "^2.11.0"
+  }
+}
