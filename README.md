@@ -17,22 +17,25 @@ Frameworks
     tree shaking
     caching-->
 
-<!-- -Main component- Application
-    -Header
-        -Logo
-        -Home
-        -about
-        -cart
-    -Body
-        -search
-        -resturant card container
-            -resturant card
-                -name
-                -image
-                -rating
-    -Footer
-        -copyright
-        -contact -->
+## Main component- Application
+
+    ### Header
+        ## Logo
+        ## Home
+        ## about
+        ## cart
+    ## Body
+        ## search
+        ## resturant card container
+            ## resturant card
+                ## name
+                ## image
+                ## rating
+    ## Footer
+        ## copyright
+        ## contact
+
+## Steps
 
 Step 1- Draft a plan
 Step 2- Initilize npm- to manage all packages

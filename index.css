@@ -1,1 +1,63 @@
 /* css file to contain all styling */
+.imgClass {
+  width: 90px;
+  height: 80px;
+}
+
+.header-links {
+  display: flex;
+  list-style: none;
+}
+
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  height: 85px;
+  border: 1px solid gray;
+  margin-bottom: 30px;
+}
+
+.li-item {
+  padding: 0px 10px;
+}
+
+.container-menu {
+  margin: 3px;
+}
+
+.main {
+}
+
+.footer {
+  background-color: grey;
+  position: absolute;
+  top: 700px;
+  width: 98vw;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 200px;
+  height: 250px;
+  border: 1px solid gray;
+  margin: 5px;
+}
+
+.card-header {
+  text-align: center;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card-image {
+  width: 180px;
+  padding-left: 10px;
+  height: 140px;
+}
