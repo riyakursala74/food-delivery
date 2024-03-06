@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "this is a food delivery app",
   "scripts": {
+    "start":"npx parcel index.html",
     "test": "jest"
   },
   "repository": {
