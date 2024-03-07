@@ -80,6 +80,7 @@ const ContainerMenu = () => {
               img={imgSrc + info.cloudinaryImageId}
               rating={info.avgRating}
               cuisine={info.cuisines}
+              id={info.id}
             />
           );
         })}
