@@ -6,8 +6,8 @@ const ContainerMenu = () => {
   const [resturants, setResturants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterResturants, setfilterResturants] = useState([]);
+
   useEffect(() => {
-    console.log("use effect called");
     fetchData();
   }, []);
 
@@ -19,9 +19,6 @@ const ContainerMenu = () => {
     const resList =
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
-    console.log(resList);
-    finalList = [...resList];
-    console.log("f= ", finalList);
     setResturants(resList);
     setfilterResturants(resList);
   };
@@ -29,14 +26,14 @@ const ContainerMenu = () => {
   imgSrc =
     "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
-  console.log("rendered", resturants.length == 0);
-  return resturants.length === 0 ? (
+  return filterResturants?.length === 0 ? (
     <ShimmerCard />
   ) : (
-    <div className="container-menu">
-      <div className="filter-container">
+    <div className="pl-10">
+      <div className="flex pt-4">
         <div>
           <input
+            className="border-gray-200 border-2 focus:border-green-700"
             type="text"
             value={searchText}
             onChange={(e) => {
@@ -45,7 +42,7 @@ const ContainerMenu = () => {
             }}
           />
         </div>
-        <div>
+        <div className="bg-blue-950 text-white rounded-md mx-2 px-2">
           <button
             onClick={() => {
               console.log("search clicked", searchText);
@@ -59,7 +56,7 @@ const ContainerMenu = () => {
           </button>
         </div>
         <button
-          className="filter"
+          className="border-2 border-blue-950 text-blue-950 rounded-md px-3"
           onClick={() => {
             const fData = filterResturants.filter(
               (res) => res.info.avgRating > 4.5
@@ -70,7 +67,7 @@ const ContainerMenu = () => {
           Top Resturants
         </button>
       </div>
-      <div className="card-container">
+      <div className="flex flex-wrap pt-5">
         {filterResturants.map((res) => {
           info = res.info;
           return (

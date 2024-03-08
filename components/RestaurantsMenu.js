@@ -6,6 +6,7 @@ const RestaurantMenu = () => {
 
   // extracting data fetch to a custom hook
   resMenu = useRestaurantMenu();
+  console.log("resmenu= ", resMenu);
   if (resMenu == "") {
     return <ShimmerCard />;
   }
@@ -13,21 +14,24 @@ const RestaurantMenu = () => {
   const { areaName, costForTwoMessage, cuisines, name } =
     resMenu?.data?.cards[0]?.card?.card?.info;
   const menu =
-    resMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
+    resMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
       ?.card?.itemCards;
+
   return (
-    <div>
-      <h2>{name}</h2>
+    <div className="pl-10 pt-5">
+      <h2 className="font-bold">{name}- </h2>
       <p>
-        {areaName} {cuisines}
+        {areaName} <br />
+        Cusines: {cuisines.join(",")}
       </p>
-      <h4>{costForTwoMessage}</h4>
+      <h4 className="font-serif mb-5">{costForTwoMessage}</h4>
       <ul>
         {menu.map((item) => {
           const info = item?.card?.info;
           return (
-            <li key={info.id}>
-              {info.name}- {info.description}
+            <li key={info.id} className="p-2 border-2 border-gray-200 mb-1">
+              {info.name}
+              <br /> {info.description}
             </li>
           );
         })}
