@@ -25,9 +25,6 @@
   margin: 3px;
 }
 
-.main {
-}
-
 .footer {
   background-color: grey;
   position: absolute;
@@ -87,4 +84,8 @@
 .filter-container {
   display: flex;
   margin-bottom: 10px;
+}
+
+.user-card {
+  border: 1px solid grey;
 }
