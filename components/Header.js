@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../utils/constants";
+import { useContext } from "react";
+import { LoginContext } from "../utils/LoginContext.js";
 
 const Header = () => {
+  const { userName } = useContext(LoginContext);
+  console.log(userName);
   return (
     <div className="flex  border-b-2 border-gray-200">
       <div className="flex">
@@ -17,6 +21,9 @@ const Header = () => {
           </li>
           <li className="font-bold text-black  hover:text-blue-700">
             <Link to="/about">About</Link>
+          </li>
+          <li className="font-bold text-black  hover:text-blue-700">
+            <Link to="/about">{userName}</Link>
           </li>
         </ul>
       </div>

@@ -13,20 +13,21 @@ const ResItems = ({ title, menu, isOpen, setOpen }) => {
         </h1>
       </div>
       <ul>
-        {menu.map((item) => {
-          const info = item?.card?.info;
-          return (
-            isOpen && (
-              <li
-                key={info.id}
-                className="p-2 border-2 border-gray-200 ml-10 w-11/12"
-              >
-                <span className="">{info.name}</span>
-                <br /> {info.description}
-              </li>
-            )
-          );
-        })}
+        {menu &&
+          menu.map((item) => {
+            const info = item?.card?.info;
+            return (
+              isOpen && (
+                <li
+                  key={info.id}
+                  className="p-2 border-2 border-gray-200 ml-10 w-11/12"
+                >
+                  <span className="">{info.name}</span>
+                  <br /> {info.description}
+                </li>
+              )
+            );
+          })}
       </ul>
     </div>
   );

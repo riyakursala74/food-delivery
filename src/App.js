@@ -7,14 +7,17 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "../components/About";
 import PageNotFound from "../components/PageNotFound";
 import RestaurantMenu from "../components/RestaurantsMenu";
+import { LoginContext } from "../utils/LoginContext.js";
 // Main javascript file
 
 const App = () => {
   return (
-    <>
-      <Header />
-      <Outlet />
-    </>
+    <LoginContext.Provider value={{ userName: "Riya" }}>
+      <>
+        <Header />
+        <Outlet />
+      </>
+    </LoginContext.Provider>
   );
 };
 
