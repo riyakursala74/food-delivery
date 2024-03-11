@@ -7,10 +7,31 @@ const Card = (props) => {
       <Link to={"/restaurants/" + props.id}>
         <img className="w-48 h-44 rounded-md" src={img} alt="" />
       </Link>
-      <p className="flex flex-wrap w-44 mb-2 break-all">{cuisine.join(",")}</p>
+      <p className="flex flex-wrap w-44 mb-2 break-all">{cuisine?.join(",")}</p>
       <h4>{rating}</h4>
     </div>
   );
+};
+
+export const NewCard = (Card) => {
+  return (props) => {
+    console.log("props received= ", props);
+    return (
+      <>
+        <span className="absolute p-1 bg-blue-950 text-white rounded-sm">
+          New
+        </span>
+        <Card
+          key={props.id}
+          name={props.name}
+          img={props.img}
+          rating={props.rating}
+          cuisine={props.cuisine}
+          id={props.id}
+        />
+      </>
+    );
+  };
 };
 
 export default Card;

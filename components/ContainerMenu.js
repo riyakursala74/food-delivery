@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card, { NewCard } from "./Card";
 import { useEffect, useState } from "react";
 import ShimmerCard from "./ShimmerCard";
 
@@ -10,6 +10,8 @@ const ContainerMenu = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const NewCardComponent = NewCard(Card);
 
   const fetchData = async () => {
     const data = await fetch(
@@ -70,7 +72,16 @@ const ContainerMenu = () => {
       <div className="flex flex-wrap pt-5">
         {filterResturants.map((res) => {
           info = res.info;
-          return (
+          return info?.sla?.deliveryTime <= 30 ? (
+            <NewCardComponent
+              key={info.id}
+              name={info.name}
+              img={imgSrc + info.cloudinaryImageId}
+              rating={info.avgRating}
+              cuisine={info.cuisines}
+              id={info.id}
+            />
+          ) : (
             <Card
               key={info.id}
               name={info.name}
