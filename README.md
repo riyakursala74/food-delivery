@@ -41,3 +41,12 @@ Step 1- Draft a plan
 Step 2- Initilize npm- to manage all packages
 Step 3- Installing parcel as a dev dependency
 Step 4- Start dev server shippe with parcel- npx parcel index.html
+
+## Redux
+
+Install RTK and react-redux
+Set up redux store
+Create a slice
+Add Provider
+Dipatch action
+Subscribe using selector

@@ -1,9 +1,12 @@
-import { UP_ARROW, DOWN_ARROW } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { UP_ARROW, DOWN_ARROW, IMAGE_URL } from "../utils/constants";
+import MenuCard from "./MenuCard";
 
 const ResItems = ({ title, menu, isOpen, setOpen }) => {
   const handleClick = () => {
     setOpen();
   };
+  const dispatch = useDispatch();
   return (
     <div>
       <div onClick={handleClick}>
@@ -12,23 +15,7 @@ const ResItems = ({ title, menu, isOpen, setOpen }) => {
           <span className="float-right">{isOpen ? DOWN_ARROW : UP_ARROW}</span>
         </h1>
       </div>
-      <ul>
-        {menu &&
-          menu.map((item) => {
-            const info = item?.card?.info;
-            return (
-              isOpen && (
-                <li
-                  key={info.id}
-                  className="p-2 border-2 border-gray-200 ml-10 w-11/12"
-                >
-                  <span className="">{info.name}</span>
-                  <br /> {info.description}
-                </li>
-              )
-            );
-          })}
-      </ul>
+      {isOpen && <MenuCard menu={menu} />}
     </div>
   );
 };

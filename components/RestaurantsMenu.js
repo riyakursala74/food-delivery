@@ -8,7 +8,6 @@ const RestaurantMenu = () => {
   const [openIndex, setOpenIndex] = useState(0);
   // extracting data fetch to a custom hook
   resMenu = useRestaurantMenu();
-  console.log("resmenu= ", resMenu);
   if (resMenu == "") {
     return <ShimmerCard />;
   }
@@ -34,6 +33,7 @@ const RestaurantMenu = () => {
         const item = fItem?.card?.card;
         return (
           <ResItems
+            key={item.title}
             title={item.title}
             menu={item.itemCards}
             isOpen={openIndex == index && true}

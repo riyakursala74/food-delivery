@@ -8,16 +8,30 @@ import About from "../components/About";
 import PageNotFound from "../components/PageNotFound";
 import RestaurantMenu from "../components/RestaurantsMenu";
 import { LoginContext } from "../utils/LoginContext.js";
+import CartReducer from "../utils/Store.js";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import Cart from "../components/Cart.js";
 // Main javascript file
+
+// Creation of redux store
+
+const store = configureStore({
+  reducer: {
+    cart: CartReducer,
+  },
+});
 
 const App = () => {
   return (
-    <LoginContext.Provider value={{ userName: "Riya" }}>
-      <>
-        <Header />
-        <Outlet />
-      </>
-    </LoginContext.Provider>
+    <Provider store={store}>
+      <LoginContext.Provider value={{ userName: "Riya" }}>
+        <>
+          <Header />
+          <Outlet />
+        </>
+      </LoginContext.Provider>
+    </Provider>
   );
 };
 
@@ -33,6 +47,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
