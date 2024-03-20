@@ -50,3 +50,15 @@ Create a slice
 Add Provider
 Dipatch action
 Subscribe using selector
+
+# Testing
+
+Install React testing library
+Install jest
+Install babel dependencies
+override parcel babel default configuration
+configure npx jest --init
+Install jsdom library
+install @babel/preset-react - to make JSX work in test cases
+Include @babel/preset-react in babel config
+npm i -D @testing-library/jest-dom

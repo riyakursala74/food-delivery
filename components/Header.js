@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../utils/constants";
-import { useContext } from "react";
-import { LoginContext } from "../utils/LoginContext.js";
+// import { useContext } from "react";
+// import { LoginContext } from "../utils/LoginContext.js";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const { userName } = useContext(LoginContext);
+  //const { userName } = useContext(LoginContext);
   const cartItems = useSelector((store) => store.cart.cartItems);
   return (
     <div className="flex  border-b-2 border-gray-200">
@@ -32,7 +32,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="font-bold text-black  hover:text-blue-700">
-            <Link to="/about">{userName}</Link>
+            {/* <Link to="/about">{userName}</Link> */}
           </li>
         </ul>
       </div>

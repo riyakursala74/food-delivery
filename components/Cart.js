@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../utils/Store";
+import { clearCart } from "../utils/StoreSlice";
 import MenuCard from "./MenuCard";
 const Cart = () => {
   // use a selector to subscribe to store
