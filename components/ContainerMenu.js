@@ -43,11 +43,11 @@ const ContainerMenu = () => {
     // }
   };
   return (
-    <div className={`pl-10 md:pl-1 ${theme_config[theme].background}`}>
+    <div className={`pl-10 md:pl-4 ${theme_config[theme].background}`}>
       {filterResturants?.length === 0 ? (
         <ShimmerCard />
       ) : (
-        <div className={`pl-10 md:pl-1 ${theme_config[theme].background}`}>
+        <div className={`pl-10 md:pl-4 ${theme_config[theme].background}`}>
           <div className="flex md:flex-row flex-col pt-4 justify-center md:justify-start">
             <div>
               <input

@@ -21,7 +21,7 @@ const Header = () => {
     <div className={`flex border-b-2 ${currentTheme.background}`}>
       <div className="flex">
         <h2
-          className={`self-center font-bold text-xl ml-0 pl-10 mb-3 pt-2 italic ${currentTheme.logoColor}`}
+          className={`self-center font-bold text-xl ml-0 pl-14 mb-3 pt-2 italic ${currentTheme.logoColor}`}
         >
           Ezdeli
         </h2>
