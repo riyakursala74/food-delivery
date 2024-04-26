@@ -12,14 +12,14 @@ const RestaurantMenu = () => {
     return <ShimmerCard />;
   }
 
+  console.log("res menu= ", resMenu);
   const { areaName, costForTwoMessage, cuisines, name } =
-    resMenu?.data?.cards[0]?.card?.card?.info;
+    resMenu?.data?.cards[2]?.card?.card?.info;
   const menu =
-    resMenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    resMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
   const filtered = menu.filter((it) => {
     return it?.card?.card?.title != undefined;
   });
-  console.log("filtered item= ", filtered);
 
   return (
     <div className="pl-10 pt-5 text-center">
@@ -32,15 +32,18 @@ const RestaurantMenu = () => {
       {filtered.map((fItem, index) => {
         const item = fItem?.card?.card;
         return (
-          <ResItems
-            key={item.title}
-            title={item.title}
-            menu={item.itemCards}
-            isOpen={openIndex == index && true}
-            setOpen={() => {
-              setOpenIndex(index);
-            }}
-          />
+          item.itemCards &&
+          item.itemCards.length > 0 && (
+            <ResItems
+              key={item.title}
+              title={item.title}
+              menu={item.itemCards}
+              isOpen={openIndex == index && true}
+              setOpen={() => {
+                setOpenIndex(index);
+              }}
+            />
+          )
         );
       })}
     </div>
