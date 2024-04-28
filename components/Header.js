@@ -13,17 +13,17 @@ const Header = () => {
   const currentTheme = isLightmode
     ? theme_config["light"]
     : theme_config["dark"];
-  const iconClass = `p-1 rounded-full cursor-pointer bg-gradient-to-r from-blue-950 ${currentTheme.iconClass} `;
+  const iconClass = `bg-gradient-to-r from-blue-950 ${currentTheme.iconClass} p-1 rounded-full cursor-pointer`;
   const liClass = `font-bold hidden md:block ${currentTheme.liColor}`;
-  const cartClass = `px-2 bg-gradient-to-r from-green-800 to-green-800 font-bold ${currentTheme.cartButtonBtn}`;
+  const cartClass = `px-2 bg-lime-700 font-bold text-white`;
   const dispatch = useDispatch();
   return (
-    <div className={`flex border-b-2 ${currentTheme.background}`}>
+    <div className={`${currentTheme.background} flex border-b-2`}>
       <div className="flex">
         <h2
-          className={`self-center font-bold text-xl ml-0 pl-14 mb-3 pt-2 italic ${currentTheme.logoColor}`}
+          className={` ${currentTheme.logoColor} self-center font-bold text-xl ml-0 pl-14 mb-3 pt-2 italic`}
         >
-          Ezdeli
+          <Link to="/">Ezdeli</Link>
         </h2>
       </div>
       <div className="flex-1">
@@ -39,9 +39,6 @@ const Header = () => {
             }}
           >
             {isLightmode ? <LuSun /> : <LuMoon />}
-          </li>
-          <li className={liClass}>
-            <Link to="/">Home</Link>
           </li>
           <li className={liClass}>
             <Link to="/about">About</Link>

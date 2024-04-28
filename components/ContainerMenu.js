@@ -1,57 +1,47 @@
 import Card, { NewCard } from "./Card";
 import { useEffect, useState } from "react";
 import ShimmerCard from "./ShimmerCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { theme_config } from "../utils/themeColors";
+import { MENU_URL, RES_DATA } from "../utils/constants";
+import { addMenus, addRestaurants } from "../utils/RestaurantSlice";
 
 const ContainerMenu = () => {
   const [resturants, setResturants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterResturants, setfilterResturants] = useState([]);
   const theme = useSelector((store) => store.theme.mode);
+  const dispatch = useDispatch();
   useEffect(() => {
     fetchData();
   }, []);
   const NewCardComponent = NewCard(Card);
   const fetchData = async () => {
-    const url = "https://worldwide-restaurants.p.rapidapi.com/search";
-    const options = {
-      method: "POST",
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-        "X-RapidAPI-Key": "5fc5f88ec5msh11a23abe1ff8ec1p151f08jsnf2097ce2404f",
-        "X-RapidAPI-Host": "worldwide-restaurants.p.rapidapi.com",
-      },
-      body: new URLSearchParams({
-        language: "en_US",
-        location_id: "297704",
-        currency: "INR",
-        offset: "0",
-      }),
-    };
+    const response = await fetch(RES_DATA);
+    const body = await response.json();
+    const resData = [];
+    Object.entries(body).forEach((res) => {
+      res[1]["id"] = res[0];
+      resData.push(res[1]);
+    });
 
-    // try {
-    //   const response = await fetch(url, options);
-    //   const result = await response.json();
-
-    //   const restaurant_list = result.results.data;
-    //   setResturants(restaurant_list);
-    //   setfilterResturants(restaurant_list);
-    //   console.log("result from new api= ", restaurant_list);
-    // } catch (error) {
-    //   console.error("erro =", error);
-    // }
+    setResturants(resData);
+    setfilterResturants(resData);
+    dispatch(addRestaurants(resData));
+    const resMenu = await fetch(MENU_URL);
+    const menus = await resMenu.json();
+    dispatch(addMenus(menus));
   };
   return (
     <div className={`pl-10 md:pl-4 ${theme_config[theme].background}`}>
       {filterResturants?.length === 0 ? (
         <ShimmerCard />
       ) : (
-        <div className={`pl-10 md:pl-4 ${theme_config[theme].background}`}>
+        <div className={`pl-10 md:pl-8 ${theme_config[theme].background}`}>
           <div className="flex md:flex-row flex-col pt-4 justify-center md:justify-start">
             <div>
               <input
-                className="border-gray-200 border-2 focus:border-green-700"
+                className={`${theme_config[theme].cardBorder} border-2 focus:border-green-700 ${theme_config[theme].background}`}
                 type="text"
                 value={searchText}
                 onChange={(e) => {
@@ -59,12 +49,10 @@ const ContainerMenu = () => {
                 }}
               />
               <button
-                className="bg-blue-950 text-white px-2 ml-2 rounded"
+                className={` bg-lime-700 text-white px-2 ml-2 rounded`}
                 onClick={() => {
                   const f = resturants.filter((res) =>
-                    res.info.name
-                      .toLowerCase()
-                      .includes(searchText.toLowerCase())
+                    res.name.toLowerCase().includes(searchText.toLowerCase())
                   );
                   setfilterResturants(f);
                 }}
@@ -73,36 +61,42 @@ const ContainerMenu = () => {
               </button>
             </div>
             <button
-              className="border-2 border-blue-950 text-blue-950 rounded-md px-3 mt-3 md:mt-0 w-1/2 md:w-36 md:ml-5"
+              className="border-2 border-lime-700 text-lime-700 rounded-md px-3 mt-3 md:mt-0 w-1/2 md:w-36 md:ml-5 pb"
               onClick={() => {
                 const fData = filterResturants.filter(
-                  (res) => res.info.avgRating > 4.5
+                  (res) => res.avgRating > 4.5
                 );
                 setfilterResturants(fData);
               }}
             >
-              Top Resturants
+              Top Restaurants
             </button>
           </div>
           <div className={`flex flex-wrap pt-5`}>
             {filterResturants?.map((info) => {
-              return info?.sla?.deliveryTime <= 30 ? (
+              return info.deliveryTime <= 30 ? (
                 <NewCardComponent
-                  key={info.name}
+                  key={info.id}
                   name={info.name}
-                  img={info?.photo?.images?.small?.url}
-                  rating={info.rating}
-                  cuisine={info.cuisine}
-                  id={info.name}
+                  img={info.image}
+                  rating={info.avgRating}
+                  cuisine={info.cuisines}
+                  id={info.id}
+                  totalRating={info.totalRatingsString}
+                  costForTwo={info.costForTwo}
+                  areaName={info.areaName}
                 />
               ) : (
                 <Card
-                  key={info.name}
+                  key={info.id}
                   name={info.name}
-                  img={info?.photo?.images?.small?.url}
-                  rating={info.rating}
-                  cuisine={info.cuisine}
-                  id={info.name}
+                  img={info.image}
+                  rating={info.avgRating}
+                  cuisine={info.cuisines}
+                  id={info.id}
+                  totalRating={info.totalRatingsString}
+                  costForTwo={info.costForTwo}
+                  areaName={info.areaName}
                 />
               );
             })}

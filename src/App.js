@@ -11,9 +11,6 @@ import { LoginContext } from "../utils/LoginContext.js";
 import { Provider } from "react-redux";
 import Cart from "../components/Cart.js";
 import store from "../utils/Store.js";
-// Main javascript file
-
-// Creation of redux store
 
 const App = () => {
   return (
@@ -21,7 +18,9 @@ const App = () => {
       <LoginContext.Provider value={{ userName: "Riya" }}>
         <>
           <Header />
-          <Outlet />
+          <div className="h-screen w-screen">
+            <Outlet />
+          </div>
         </>
       </LoginContext.Provider>
     </Provider>

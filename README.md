@@ -62,3 +62,11 @@ Install jsdom library
 install @babel/preset-react - to make JSX work in test cases
 Include @babel/preset-react in babel config
 npm i -D @testing-library/jest-dom
+
+# To Do
+
+do not allow items from multiple restaurant in cart
+show pope up and clear if required
+show + - button
+error handling page
+page when internet is off
