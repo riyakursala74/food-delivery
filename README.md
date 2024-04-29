@@ -6,7 +6,7 @@
 4. Used Redux Toolkit (RTK) to manage state, also used context to understand scope.
 5. Tailwind added for styling, website is responsive and can be viewed on phone as well.
 6. Basic level testing added using Jest
-7. Added Dark mode and filters of veg/non-veg
+7. Added Dark mode and filters of veg/non-veg, displaying Shimmer UI while page reloading
 
 # Live Website
 https://ezdeli.web.app/
