@@ -16,25 +16,24 @@ const Header = () => {
     : theme_config["dark"];
   const iconClass = `bg-gradient-to-r from-blue-950 to-yellow-300 ${currentTheme.iconClass} p-1 rounded-full cursor-pointer`;
   const liClass = `font-bold hidden md:block ${currentTheme.liColor}`;
-  const cartClass = `px-2 bg-lime-700 font-bold text-white`;
+  const cartClass = `px-2 bg-lime-700 font-bold text-white mx-2 md:mx-0`;
   const dispatch = useDispatch();
   return (
     <div
       className={`${
         showPopUp && "overflow-hidden w-screen bg-black bg-opacity-50 fixed"
-      } ${currentTheme.background} flex border-b-2 `}
+      } ${currentTheme.background} flex border-b-2 justify-between`}
     >
       <div className="flex">
         <h2
-          className={` ${currentTheme.logoColor} self-center font-bold text-xl ml-0 pl-14 mb-3 pt-2 italic`}
+          className={` ${currentTheme.logoColor} self-center font-bold text-xl ml-0 md:pl-14 pl-2 mb-3 pt-2 italic`}
         >
           <Link to="/">Ezdeli</Link>
         </h2>
       </div>
       <div className="flex-1">
-        <ul className="flex space-x-7 mx-8 pt-3 self-center justify-end">
+        <ul className="flex md:space-x-7 md:mx-8 pt-3 self-center justify-end">
           <li
-            // className={`p-1 rounded-full cursor-pointer bg-gradient-to-r from-orange-400 to-yellow-300 ${currentTheme.iconClass} `}
             className={iconClass}
             title={isLightmode ? "Light Mode" : "Dark Mode"}
             onClick={() => {

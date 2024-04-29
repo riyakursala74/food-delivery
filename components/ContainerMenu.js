@@ -33,11 +33,11 @@ const ContainerMenu = () => {
     dispatch(addMenus(menus));
   };
   return (
-    <div className={`pl-10 md:pl-4 ${theme_config[theme].background}`}>
+    <div className={`pl-4 md:pl-4 ${theme_config[theme].background}`}>
       {filterResturants?.length === 0 ? (
         <ShimmerCard />
       ) : (
-        <div className={`pl-10 md:pl-8 ${theme_config[theme].background}`}>
+        <div className={`md:pl-8 ${theme_config[theme].background}`}>
           <div className="flex md:flex-row flex-col pt-4 justify-center md:justify-start">
             <div>
               <input
@@ -61,7 +61,7 @@ const ContainerMenu = () => {
               </button>
             </div>
             <button
-              className="border-2 border-lime-700 text-lime-700 rounded-md px-3 mt-3 md:mt-0 w-1/2 md:w-36 md:ml-5 pb"
+              className="border-2 border-lime-700 text-lime-700 rounded-md px-3 mt-3 md:mt-0 w-1/2 md:w-36 md:ml-5"
               onClick={() => {
                 const fData = filterResturants.filter(
                   (res) => res.avgRating > 4.5
@@ -72,7 +72,7 @@ const ContainerMenu = () => {
               Top Restaurants
             </button>
           </div>
-          <div className={`flex flex-wrap pt-5`}>
+          <div className={`flex flex-wrap md:pt-5 pt-3`}>
             {filterResturants?.map((info) => {
               return info.deliveryTime <= 30 ? (
                 <NewCardComponent

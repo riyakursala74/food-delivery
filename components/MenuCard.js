@@ -19,18 +19,19 @@ const MenuCard = ({ menu, pathname, resId, filter }) => {
   });
 
   let filteredMenu = menu;
-  console.log("filter rece= ", filter);
-  // filter menu based on filter passed
-  if (filter === 0) {
-    filteredMenu = menu;
-  } else if (filter === 1) {
-    filteredMenu = filteredMenu.filter((item) => {
-      return item.isVeg === 1;
-    });
-  } else {
-    filteredMenu = filteredMenu.filter((item) => {
-      return item.isVeg !== 1;
-    });
+  if (pathname !== "cart") {
+    // filter menu based on filter passed
+    if (filter === 0) {
+      filteredMenu = menu;
+    } else if (filter === 1) {
+      filteredMenu = filteredMenu.filter((item) => {
+        return item.isVeg === 1;
+      });
+    } else {
+      filteredMenu = filteredMenu.filter((item) => {
+        return item.isVeg !== 1;
+      });
+    }
   }
   return (
     <ul>
@@ -49,13 +50,15 @@ const MenuCard = ({ menu, pathname, resId, filter }) => {
           return (
             <li
               key={info.id}
-              className={`flex p-2 border-b-2 border-gray-200 ml-10 w-11/12 justify-between h-36`}
+              className={`flex md:p-2 border-b-2 border-gray-200 ml-2 md:ml-10 w-11/12 justify-between h-36 overflow-y-hidden`}
             >
-              <div className="text-left w-11/12 pl-7">
+              <div className="text-left w-11/12 md:pl-7 pl-3">
                 <div className="font-bold">
                   <div className="flex">
-                    <div>{info.name}</div>
-                    <div className="ml-2 mt-1">
+                    <div className="md:w-auto max-w-40 h-7 md:h-auto overflow-hidden">
+                      {info.name}
+                    </div>
+                    <div className="ml-2 mt-1 mr-1">
                       {info.isVeg ? (
                         <FaRegCaretSquareUp className="text-green-500" />
                       ) : (
@@ -65,7 +68,9 @@ const MenuCard = ({ menu, pathname, resId, filter }) => {
                   </div>
                   <div>{"Rs. " + info.price}</div>
                 </div>
-                <br /> <div className="italic">{info.description}</div>
+                <div className="italic pr-2 h-12 md:h-auto overflow-hidden mt-2 text-ellipsis">
+                  {info.description}
+                </div>
               </div>
               <div className="flex flex-col">
                 <img
@@ -73,7 +78,7 @@ const MenuCard = ({ menu, pathname, resId, filter }) => {
                   src={info.imageId}
                 ></img>
                 {
-                  <div className="flex -top-1 p-1 w-32  justify-between border-2 rounded-md text-lime-600 border-lime-600">
+                  <div className="flex -top-1 p-1 w-32 justify-between border-2 rounded-md text-lime-600 border-lime-600">
                     {itemInCart && (
                       <div
                         className="cursor-pointer"

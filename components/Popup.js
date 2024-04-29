@@ -22,12 +22,12 @@ const Popup = () => {
           >
             <CgCloseR className="mr-3 mt-3 text-xl" />
           </div>
-          <p className="pt-12 px-20">
+          <p className="md:pt-12 md:px-20 px-2">
             {`You already have items in you cart from ${resInCart[0].name}. Please clear cart to
             add items from another restaurant`}
           </p>
           <button
-            className="ml-80 bg-red-600 rounded-md text-white px-3 mt-16 py-2"
+            className="md:ml-80 bg-red-600 rounded-md text-white px-3 md:mt-16 py-2 mt-5 ml-2"
             onClick={() => {
               dispatch(clearCart());
               dispatch(popUpToggle(false));

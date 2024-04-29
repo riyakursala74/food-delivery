@@ -8,7 +8,6 @@ const Cart = () => {
   const data = useSelector((store) => store.cart);
   const dispatch = useDispatch();
   const theme = useSelector((store) => store.theme.mode);
-  console.log("data= ", data);
   return (
     <div className={`${theme_config[theme].background} h-screen`}>
       <h3
@@ -18,7 +17,7 @@ const Cart = () => {
       </h3>
       {data.cartItems.length > 0 ? (
         <button
-          className="bg-red-500 text-white p-2 rounded-md text-right float-right mr-28"
+          className="bg-red-500 text-white p-2 rounded-md text-right float-right md:mr-28 mr-5 mb-8 md:mb-0"
           onClick={() => {
             dispatch(clearCart());
           }}
@@ -26,7 +25,11 @@ const Cart = () => {
           Clear Cart
         </button>
       ) : (
-        <h2 className="text-center pt-10 italic">It's All empty over here</h2>
+        <h2
+          className={`${theme_config[theme].cardText} text-center pt-10 italic`}
+        >
+          It's All empty over here
+        </h2>
       )}
       <MenuCard menu={data.cartItems} resId={data.restaurant} pathname="cart" />
     </div>

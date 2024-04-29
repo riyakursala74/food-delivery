@@ -10,7 +10,6 @@ import { FaStar } from "react-icons/fa6";
 import Popup from "./Popup";
 
 const RestaurantMenu = () => {
-  let resMenu = [];
   showPopUp = useSelector((store) => store.cart.popUpOpen);
   // extracting data fetch to a custom hook
   menu = useRestaurantMenu();
@@ -50,7 +49,6 @@ const RestaurantMenu = () => {
     return item && item.itemCards && item.itemCards.length > 0;
   });
 
-  console.log("filter= ", filter);
   return (
     <div className={`${showPopUp && "overflow-hidden fixed"}`}>
       {showPopUp && (
@@ -59,17 +57,19 @@ const RestaurantMenu = () => {
         </div>
       )}
       <div
-        className={`${theme_config[theme].background} ${theme_config[theme].menuColor} pl-10 pt-5 text-center`}
+        className={`${theme_config[theme].background} ${theme_config[theme].menuColor} md:pl-10 md:pt-5 pt-2 md:text-center`}
       >
-        <div className="h-60 border border-gray-400 ml-3 w-[95%] mb-10 rounded-md">
-          <div className="flex justify-between pl-10 text-left items-center">
+        <div className="md:h-60 border border-gray-400 md:ml-3 ml-2 w-[95%] md:mb-10 mb-3 rounded-md h-44">
+          <div className="flex justify-between md:pl-10 pl-4 text-left md:items-center">
             <div>
-              <h2 className="font-bold text-xl pb-5">{name} </h2>
+              <h2 className="font-bold md:text-xl md:pb-5 text-lg">{name} </h2>
               <p className="italic pb-2">
                 {areaName} <br />
-                Cusines: {cuisines.join(", ")}
+                <div className="hidden md:block">
+                  Cusines: {cuisines.join(", ")}
+                </div>
               </p>
-              <div className="flex justify-between w-96">
+              <div className="flex md:justify-between md:w-96 flex-col md:flex-row">
                 <div className="w-40 flex font-bold">
                   <div className="pt-1">
                     <FaStar className="text-lime-600" />
@@ -78,7 +78,7 @@ const RestaurantMenu = () => {
                     {avgRating}( {totalRatingsString})
                   </div>
                 </div>
-                <h4 className="mb-5">
+                <h4 className="md:mb-5">
                   Cost For Two:
                   <span className="italic font-bold">{costForTwo}</span>
                 </h4>
@@ -91,16 +91,16 @@ const RestaurantMenu = () => {
                 <RiEBike2Line className="mt-1" />
               </div>
             </div>
-            <div>
+            <div className="">
               <img
                 src={image}
                 alt=""
-                className="h-52 self-center mr-5 mt-4 p-2 border border-blue-950 w-60 rounded-md"
+                className="md:h-52 h-36 md:self-center md:mr-5 mt-4 md:p-2 md:border md:border-blue-950 md:w-60 rounded-lg w-32 mr-2"
               />
             </div>
           </div>
         </div>
-        <div className="flex ml-11 font-bold mb-2">
+        <div className="flex md:ml-11 ml-3 font-bold mb-2">
           <button
             onClick={() => {
               checkFilter(1);

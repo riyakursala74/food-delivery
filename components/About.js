@@ -11,13 +11,13 @@ const About = () => {
     >
       <div className="flex pl-96 pt-24">
         <p className="mr-2">
-          This website is developer by Riya. I am a full stack developer with UI
+          This website is developed by Riya, a full stack developer with UI
           specialization
         </p>
         <FaRegSmile className="mt-1" />
       </div>
       <div className="flex pl-96">
-        Reach me
+        Reach
         <div
           className="flex cursor-pointer text-blue-600"
           onClick={() => {

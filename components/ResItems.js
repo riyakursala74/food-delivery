@@ -15,7 +15,7 @@ const ResItems = ({ title, menu, id, filter }) => {
     <div className="">
       <div onClick={handleClick}>
         <h1
-          className={`p-2  ml-10 w-11/12 font-bold text-left text-lg ${
+          className={`p-2 ml-2 md:ml-10 w-11/12 font-bold text-left text-lg ${
             !isOpen && "border-b-2 border-gray-300"
           }`}
         >
