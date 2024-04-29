@@ -1,5 +1,5 @@
 import ShimmerCard from "./ShimmerCard";
-import useRestaurantMenu from "../utils/useRestaurantMenu";
+import useMenu from "../utils/useRestaurantMenu";
 import ResItems from "./ResItems";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -10,9 +10,9 @@ import { FaStar } from "react-icons/fa6";
 import Popup from "./Popup";
 
 const RestaurantMenu = () => {
-  showPopUp = useSelector((store) => store.cart.popUpOpen);
+  const showPopUp = useSelector((store) => store.cart.popUpOpen);
   // extracting data fetch to a custom hook
-  menu = useRestaurantMenu();
+  let menu = useMenu();
   const { resId } = useParams();
   const resData = useSelector((store) => {
     return store.restaurant.restaurants;

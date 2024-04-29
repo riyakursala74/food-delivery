@@ -9,7 +9,7 @@ import { setTheme } from "../utils/ThemeSlice.js";
 const Header = () => {
   const { userName } = useContext(LoginContext);
   const cartItems = useSelector((store) => store.cart.cartItems);
-  showPopUp = useSelector((store) => store.cart.popUpOpen);
+  const showPopUp = useSelector((store) => store.cart.popUpOpen) || false;
   const [isLightmode, setIsLightmode] = useState(true);
   const currentTheme = isLightmode
     ? theme_config["light"]

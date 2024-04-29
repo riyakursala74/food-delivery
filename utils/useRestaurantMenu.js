@@ -6,7 +6,7 @@ import { MENU_URL } from "./constants";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-const useRestaurantMenu = () => {
+const useMenu = () => {
   const { resId } = useParams();
   const [resMenu, setResMenu] = useState("");
   const menus = useSelector((store) => store.restaurant.menus);
@@ -24,4 +24,4 @@ const useRestaurantMenu = () => {
   return resMenu;
 };
 
-export default useRestaurantMenu;
+export default useMenu;

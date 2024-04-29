@@ -6,7 +6,9 @@
     "start": "npx parcel index.html",
     "test": "jest",
     "test-watch": "jest --watch",
-    "start-rm-cache": "rm -rf .parcel-cache && npx parcel index.html"
+    "start-rm-cache": "rm -rf .parcel-cache && npx parcel index.html",
+    "build": "parcel build index.html",
+    "clear-build-cache": "rm -rf .cache/ dist/"
   },
   "repository": {
     "type": "git",
