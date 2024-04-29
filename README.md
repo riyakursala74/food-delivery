@@ -1,70 +1,26 @@
 # food-delivery
 
-Initial draft- Idea is to create a replica of food delivery application using react
-At a very high level- the component breakdown planned
+1. Create a react app from scratch to understand how react manages everything under hood bby importing react pacakges and not using create-react-app
+2. Used parcel to understand more about bundling, HMR and other features provided
+3. Used both class and functional components, developed 90% from functional components and hooks
+4. Used Redux Toolkit (RTK) to manage state, also used context to understand scope.
+5. Tailwind added for styling, website is responsive and can be viewed on phone as well.
+6. Basic level testing added using Jest
+7. Added Dark mode and filters of veg/non-veg
 
-This is a sample application created without using npx-create-app, to understand the idea behind how react works
+# Live Website
+https://ezdeli.web.app/
 
-Frameworks
+# Screen grabs
+![image](https://github.com/riyakursala74/food-delivery/assets/72920389/cc8d95bc-09b4-4806-a087-6e79a15ab782)
 
-<!-- -Parcel- https://parceljs.org/ - build tool
-    HMR- Hot module reload
-    minifying
-    bundling
-    hosting
-    dev server
-    code splitting
-    tree shaking
-    caching-->
+![image](https://github.com/riyakursala74/food-delivery/assets/72920389/2d7ec0d9-f49d-4c56-83a2-7d6420daf7c5)
 
-## Main component- Application
+![image](https://github.com/riyakursala74/food-delivery/assets/72920389/c95b45b8-47cd-48f0-a167-4d5dfe7b92b6)
 
-    ### Header
-        ## Logo
-        ## Home
-        ## about
-        ## cart
-    ## Body
-        ## search
-        ## resturant card container
-            ## resturant card
-                ## name
-                ## image
-                ## rating
-    ## Footer
-        ## copyright
-        ## contact
+![image](https://github.com/riyakursala74/food-delivery/assets/72920389/4864564b-5d32-4422-aea5-af65e3d70a98)
 
-## Steps
+![image](https://github.com/riyakursala74/food-delivery/assets/72920389/43343b11-c4a6-4f58-8e20-25ea305d86bb)
 
-Step 1- Draft a plan
-Step 2- Initilize npm- to manage all packages
-Step 3- Installing parcel as a dev dependency
-Step 4- Start dev server shippe with parcel- npx parcel index.html
 
-## Redux
 
-Install RTK and react-redux
-Set up redux store
-Create a slice
-Add Provider
-Dipatch action
-Subscribe using selector
-
-# Testing
-
-Install React testing library
-Install jest
-Install babel dependencies
-override parcel babel default configuration
-configure npx jest --init
-Install jsdom library
-install @babel/preset-react - to make JSX work in test cases
-Include @babel/preset-react in babel config
-npm i -D @testing-library/jest-dom
-
-# To Do
-
-error handling page
-page when internet is off
-veg non-veg icon and filter
