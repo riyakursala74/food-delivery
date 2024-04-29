@@ -22,9 +22,18 @@ const RestaurantMenu = () => {
   const currentRes = resData.filter((res) => {
     return res.id == resId;
   });
+  const [filter, setFilter] = useState(0);
   if (menu == "") {
     return <ShimmerCard />;
   }
+
+  const checkFilter = (condition) => {
+    if (filter === condition) {
+      setFilter(0);
+      return;
+    }
+    setFilter(condition);
+  };
 
   const {
     areaName,
@@ -40,6 +49,8 @@ const RestaurantMenu = () => {
   menu = menu.filter((item) => {
     return item && item.itemCards && item.itemCards.length > 0;
   });
+
+  console.log("filter= ", filter);
   return (
     <div className={`${showPopUp && "overflow-hidden fixed"}`}>
       {showPopUp && (
@@ -50,7 +61,7 @@ const RestaurantMenu = () => {
       <div
         className={`${theme_config[theme].background} ${theme_config[theme].menuColor} pl-10 pt-5 text-center`}
       >
-        <div className="h-60 border border-gray-400 ml-10 w-11/12 mb-10 rounded-md">
+        <div className="h-60 border border-gray-400 ml-3 w-[95%] mb-10 rounded-md">
           <div className="flex justify-between pl-10 text-left items-center">
             <div>
               <h2 className="font-bold text-xl pb-5">{name} </h2>
@@ -89,7 +100,32 @@ const RestaurantMenu = () => {
             </div>
           </div>
         </div>
-
+        <div className="flex ml-11 font-bold mb-2">
+          <button
+            onClick={() => {
+              checkFilter(1);
+            }}
+            className={`border text-sm ${
+              filter === 1
+                ? "border-green-500 text-green-500"
+                : "border-gray-600 text-gray-600"
+            } p-1 rounded-md`}
+          >
+            Veg Only
+          </button>
+          <button
+            onClick={() => {
+              checkFilter(2);
+            }}
+            className={`ml-4 border text-sm ${
+              filter === 2
+                ? "border-red-500 text-red-500"
+                : "border-gray-600 text-gray-600"
+            } p-1 rounded-md`}
+          >
+            Non-Veg Only
+          </button>
+        </div>
         {menu?.map((item, index) => {
           return (
             <ResItems
@@ -97,6 +133,7 @@ const RestaurantMenu = () => {
               title={item.title}
               menu={item.itemCards}
               id={id}
+              filter={filter}
             />
           );
         })}

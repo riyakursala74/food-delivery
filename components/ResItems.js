@@ -4,7 +4,7 @@ import { UP_ARROW, DOWN_ARROW, IMAGE_URL } from "../utils/constants";
 import MenuCard from "./MenuCard";
 import { theme_config } from "../utils/themeColors";
 
-const ResItems = ({ title, menu, id }) => {
+const ResItems = ({ title, menu, id, filter }) => {
   const [isOpen, setIsOpen] = useState(true);
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -23,7 +23,7 @@ const ResItems = ({ title, menu, id }) => {
           <span className="float-right">{isOpen ? DOWN_ARROW : UP_ARROW}</span>
         </h1>
       </div>
-      {isOpen && <MenuCard menu={menu} resId={id} />}
+      {isOpen && <MenuCard menu={menu} resId={id} filter={filter} />}
     </div>
   );
 };

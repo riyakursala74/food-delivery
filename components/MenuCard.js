@@ -5,7 +5,7 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import { useState } from "react";
 import { FaRegCaretSquareUp } from "react-icons/fa";
 
-const MenuCard = ({ menu, pathname, resId }) => {
+const MenuCard = ({ menu, pathname, resId, filter }) => {
   const [allowAdd, setAllowAdd] = useState(false);
   const dispatch = useDispatch();
   const cart = useSelector((store) => store.cart);
@@ -18,10 +18,24 @@ const MenuCard = ({ menu, pathname, resId }) => {
     return nItem;
   });
 
+  let filteredMenu = menu;
+  console.log("filter rece= ", filter);
+  // filter menu based on filter passed
+  if (filter === 0) {
+    filteredMenu = menu;
+  } else if (filter === 1) {
+    filteredMenu = filteredMenu.filter((item) => {
+      return item.isVeg === 1;
+    });
+  } else {
+    filteredMenu = filteredMenu.filter((item) => {
+      return item.isVeg !== 1;
+    });
+  }
   return (
     <ul>
-      {menu &&
-        menu?.map((info) => {
+      {filteredMenu &&
+        filteredMenu?.map((info) => {
           let itemInCart = false;
           let itemCount = 0;
           let itemCard = cart.cartItems.filter((item) => {
