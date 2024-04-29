@@ -5,7 +5,7 @@ import { theme_config } from "../utils/themeColors";
 
 const Cart = () => {
   // use a selector to subscribe to store
-  const data = useSelector((store) => store.cart.cartItems);
+  const data = useSelector((store) => store.cart);
   const dispatch = useDispatch();
   const theme = useSelector((store) => store.theme.mode);
   console.log("data= ", data);
@@ -16,15 +16,19 @@ const Cart = () => {
       >
         Cart
       </h3>
-      <button
-        className="bg-red-500 text-white p-2 rounded-md text-right float-right mr-5"
-        onClick={() => {
-          dispatch(clearCart());
-        }}
-      >
-        Clear Cart
-      </button>
-      <MenuCard menu={data} pathname="cart" />
+      {data.cartItems.length > 0 ? (
+        <button
+          className="bg-red-500 text-white p-2 rounded-md text-right float-right mr-28"
+          onClick={() => {
+            dispatch(clearCart());
+          }}
+        >
+          Clear Cart
+        </button>
+      ) : (
+        <h2 className="text-center pt-10 italic">It's All empty over here</h2>
+      )}
+      <MenuCard menu={data.cartItems} resId={data.restaurant} pathname="cart" />
     </div>
   );
 };

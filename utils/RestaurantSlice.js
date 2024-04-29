@@ -6,7 +6,6 @@ const RestaurantSlice = createSlice({
   reducers: {
     addRestaurants: (store, action) => {
       store.restaurants = action.payload;
-      console.log("res in store= ", store.restaurants);
     },
     addMenus: (store, action) => {
       store.menus = action.payload;

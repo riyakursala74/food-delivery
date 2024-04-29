@@ -9,16 +9,21 @@ import { setTheme } from "../utils/ThemeSlice.js";
 const Header = () => {
   const { userName } = useContext(LoginContext);
   const cartItems = useSelector((store) => store.cart.cartItems);
+  showPopUp = useSelector((store) => store.cart.popUpOpen);
   const [isLightmode, setIsLightmode] = useState(true);
   const currentTheme = isLightmode
     ? theme_config["light"]
     : theme_config["dark"];
-  const iconClass = `bg-gradient-to-r from-blue-950 ${currentTheme.iconClass} p-1 rounded-full cursor-pointer`;
+  const iconClass = `bg-gradient-to-r from-blue-950 to-yellow-300 ${currentTheme.iconClass} p-1 rounded-full cursor-pointer`;
   const liClass = `font-bold hidden md:block ${currentTheme.liColor}`;
   const cartClass = `px-2 bg-lime-700 font-bold text-white`;
   const dispatch = useDispatch();
   return (
-    <div className={`${currentTheme.background} flex border-b-2`}>
+    <div
+      className={`${
+        showPopUp && "overflow-hidden w-screen bg-black bg-opacity-50 fixed"
+      } ${currentTheme.background} flex border-b-2 `}
+    >
       <div className="flex">
         <h2
           className={` ${currentTheme.logoColor} self-center font-bold text-xl ml-0 pl-14 mb-3 pt-2 italic`}

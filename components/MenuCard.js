@@ -1,19 +1,37 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IMAGE_URL } from "../utils/constants";
-import { addItem } from "../utils/StoreSlice";
+import { addItem, popUpToggle, updateItemCount } from "../utils/StoreSlice";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { useState } from "react";
+import { FaRegCaretSquareUp } from "react-icons/fa";
 
 const MenuCard = ({ menu, pathname, resId }) => {
-  console.log("resId= ", resId);
+  const [allowAdd, setAllowAdd] = useState(false);
   const dispatch = useDispatch();
-  const resInCart = useSelector((store) => store.cart.restaurant);
-  console.log("res in var= ", resInCart);
-  const [itemCount, setItemCount] = useState(1);
+  const cart = useSelector((store) => store.cart);
+  if ((cart.restaurant === "" || cart.restaurant === resId) && !allowAdd) {
+    setAllowAdd(true);
+  }
+  menu = menu?.map((item) => {
+    const count = 0;
+    const nItem = { ...item, count };
+    return nItem;
+  });
+
   return (
     <ul>
       {menu &&
         menu?.map((info) => {
+          let itemInCart = false;
+          let itemCount = 0;
+          let itemCard = cart.cartItems.filter((item) => {
+            return item.id === info.id;
+          });
+          if (itemCard.length > 0) {
+            itemInCart = true;
+            itemCount = itemCard[0].count;
+          }
+
           return (
             <li
               key={info.id}
@@ -21,47 +39,71 @@ const MenuCard = ({ menu, pathname, resId }) => {
             >
               <div className="text-left w-11/12 pl-7">
                 <div className="font-bold">
-                  {info.name}
-                  <br />
-                  {"Rs. " + info.price}
+                  <div className="flex">
+                    <div>{info.name}</div>
+                    <div className="ml-2 mt-1">
+                      {info.isVeg ? (
+                        <FaRegCaretSquareUp className="text-green-500" />
+                      ) : (
+                        <FaRegCaretSquareUp className="text-red-500" />
+                      )}
+                    </div>
+                  </div>
+                  <div>{"Rs. " + info.price}</div>
                 </div>
                 <br /> <div className="italic">{info.description}</div>
               </div>
-              <div>
-                {!pathname && (
-                  <button
-                    className="absolute ml-5  border-2 border-white bg-lime-700 font-bold text-white p-2"
-                    onClick={() => {
-                      dispatch(addItem({ resId, info }));
-                    }}
-                  >
-                    Add
-                  </button>
-                )}
+              <div className="flex flex-col">
                 <img
-                  className="w-32 float-right h-32 rounded-md"
+                  className="w-32 float-right h-24 rounded-md"
                   src={info.imageId}
                 ></img>
-                <div className="flex absolute mt-24 p-1 w-32 bg-lime-700 text-white justify-between">
-                  <div>
-                    <FaPlus
-                      className="pt-1"
-                      onClick={() => {
-                        let item = itemCount;
-                        setItemCount(++item);
-                      }}
-                    />
+                {
+                  <div className="flex -top-1 p-1 w-32  justify-between border-2 rounded-md text-lime-600 border-lime-600">
+                    {itemInCart && (
+                      <div
+                        className="cursor-pointer"
+                        onClick={() => {
+                          --itemCount;
+                          dispatch(updateItemCount({ itemCount, info }));
+                        }}
+                      >
+                        <FaMinus className="pt-1" />
+                      </div>
+                    )}
+                    <div className="text-center">
+                      {itemInCart ? (
+                        <h2 className="font-bold">{itemCount}</h2>
+                      ) : (
+                        <button
+                          className="font-bold  text-center w-32"
+                          onClick={() => {
+                            if (!allowAdd) {
+                              dispatch(popUpToggle(true));
+                            }
+                            if (allowAdd) {
+                              info["count"] = 1;
+                              dispatch(addItem({ resId, info }));
+                            }
+                          }}
+                        >
+                          Add
+                        </button>
+                      )}
+                    </div>
+                    {itemInCart && (
+                      <div className="cursor-pointer">
+                        <FaPlus
+                          className="pt-1"
+                          onClick={() => {
+                            ++itemCount;
+                            dispatch(updateItemCount({ itemCount, info }));
+                          }}
+                        />
+                      </div>
+                    )}
                   </div>
-                  <div className="border border-white px-2">{itemCount}</div>
-                  <div
-                    onClick={() => {
-                      let item = itemCount;
-                      setItemCount(--item);
-                    }}
-                  >
-                    <FaMinus className="pt-1" />
-                  </div>
-                </div>
+                }
               </div>
             </li>
           );

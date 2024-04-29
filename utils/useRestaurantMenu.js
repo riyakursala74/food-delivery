@@ -17,7 +17,6 @@ const useRestaurantMenu = () => {
 
   const fetchData = async () => {
     const menu = Object.entries(menus).filter((entry) => {
-      console.log(entry[1].resId, resId, entry[1].resId === resId);
       return entry[1].resId === resId;
     });
     menu && menu[0] && setResMenu(menu[0][1].data);

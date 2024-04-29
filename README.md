@@ -65,8 +65,6 @@ npm i -D @testing-library/jest-dom
 
 # To Do
 
-do not allow items from multiple restaurant in cart
-show pope up and clear if required
-show + - button
 error handling page
 page when internet is off
+veg non-veg icon and filter
